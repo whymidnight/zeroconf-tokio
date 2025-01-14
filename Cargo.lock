@@ -336,7 +336,7 @@ dependencies = [
  "env_logger",
  "log",
  "tokio",
- "zeroconf-tokio",
+ "zeroconf 0.15.0",
 ]
 
 [[package]]
@@ -926,6 +926,20 @@ dependencies = [
 [[package]]
 name = "zeroconf"
 version = "0.15.0"
+dependencies = [
+ "avahi-sys",
+ "bonjour-sys",
+ "derive-getters",
+ "derive-new",
+ "derive_builder",
+ "libc",
+ "log",
+ "zeroconf-macros 0.1.4",
+]
+
+[[package]]
+name = "zeroconf"
+version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1cb02959b84222ea15aae34b32d981a5c37dcf423d096e788ab39b851dc4b288"
 dependencies = [
@@ -937,7 +951,15 @@ dependencies = [
  "libc",
  "log",
  "serde",
- "zeroconf-macros",
+ "zeroconf-macros 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "zeroconf-macros"
+version = "0.1.4"
+dependencies = [
+ "quote",
+ "syn 2.0.72",
 ]
 
 [[package]]
@@ -958,5 +980,5 @@ dependencies = [
  "ntest",
  "tokio",
  "tokio-util",
- "zeroconf",
+ "zeroconf 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
