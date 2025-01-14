@@ -46,19 +46,13 @@ async fn main() -> zeroconf_tokio::Result<()> {
 
     let mut service = MdnsServiceAsync::new(service)?;
 
-    let result = service.start().await?;
+    let event_loop = service.start().await?;
 
-    info!("Registered service: {:?}", result);
+    info!("Registered service: {:?}", event_loop);
 
-    let mut browser = MdnsBrowserAsync::new(MdnsBrowser::new(service_type))?;
-
-    browser.start().await?;
-
-    while let Some(Ok(discovery)) = browser.next().await {
-        info!("Discovered service: {:?}", discovery);
-        service.shutdown().await.unwrap();
-        browser.shutdown().await.unwrap();
+    loop {
+        // calling `poll()` will keep this browser alive
+        event_loop.poll(Duration::from_secs(0))?;
     }
-
     Ok(())
 }
