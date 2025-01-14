@@ -1,6 +1,8 @@
 #[macro_use]
 extern crate log;
 
+use std::time::Duration;
+
 use clap::Parser;
 use zeroconf_tokio::prelude::*;
 use zeroconf_tokio::MdnsBrowser;
