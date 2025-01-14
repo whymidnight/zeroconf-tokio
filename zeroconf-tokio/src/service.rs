@@ -67,7 +67,7 @@ impl MdnsServiceAsync {
 
     /// Start the service.
     pub async fn event_loop(&mut self) -> zeroconf::Result<EventLoop> {
-        self.inner.register()?
+        self.inner.register()
     }
 
     /// Shutdown the service.
