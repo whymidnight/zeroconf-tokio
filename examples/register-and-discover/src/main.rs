@@ -55,5 +55,4 @@ async fn main() -> zeroconf_tokio::Result<()> {
         // calling `poll()` will keep this browser alive
         event_loop.poll(Duration::from_secs(0))?;
     }
-    Ok(())
 }
