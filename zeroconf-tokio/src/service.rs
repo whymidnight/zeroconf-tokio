@@ -4,7 +4,7 @@ use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
 use tokio::sync::oneshot;
-use zeroconf::prelude::*;
+use zeroconf::{prelude::*, EventLoop};
 use zeroconf::{MdnsService, ServiceRegistration};
 
 use crate::event_processor::EventProcessor;
@@ -64,6 +64,11 @@ impl MdnsServiceAsync {
     /// Start the service.
     pub async fn start(&mut self) -> zeroconf::Result<ServiceRegistration> {
         self.start_with_timeout(Duration::ZERO).await
+    }
+
+    /// Start the service.
+    pub async fn event_loop(&mut self) -> zeroconf::Result<EventLoop> {
+        self.inner.register()
     }
 
     /// Shutdown the service.
