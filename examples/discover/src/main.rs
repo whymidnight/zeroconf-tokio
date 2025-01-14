@@ -43,7 +43,6 @@ async fn main() -> zeroconf_tokio::Result<()> {
 
     while let Some(Ok(discovery)) = browser.next().await {
         info!("Discovered service: {:?}", discovery);
-        browser.shutdown().await.unwrap();
     }
 
     Ok(())
