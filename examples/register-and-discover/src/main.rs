@@ -50,9 +50,7 @@ async fn main() -> zeroconf_tokio::Result<()> {
 
     let event_loop = service.event_loop().await?;
 
-
     loop {
-        // calling `poll()` will keep this browser alive
         event_loop.poll(Duration::from_secs(0))?;
     }
 }
