@@ -337,6 +337,7 @@ dependencies = [
  "log",
  "tokio",
  "zeroconf 0.15.0",
+ "zeroconf-tokio",
 ]
 
 [[package]]
