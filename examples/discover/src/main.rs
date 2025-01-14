@@ -36,19 +36,6 @@ async fn main() -> zeroconf_tokio::Result<()> {
 
     let sub_types = sub_types.iter().map(|s| s.as_str()).collect::<Vec<_>>();
     let service_type = ServiceType::with_sub_types(&name, &protocol, sub_types)?;
-    let mut service = MdnsService::new(service_type.clone(), 8080);
-    let mut txt_record = TxtRecord::new();
-
-    txt_record.insert("foo", "bar")?;
-
-    service.set_name("zeroconf_example_service");
-    service.set_txt_record(txt_record);
-
-    let mut service = MdnsServiceAsync::new(service)?;
-
-    let result = service.start().await?;
-
-    info!("Registered service: {:?}", result);
 
     let mut browser = MdnsBrowserAsync::new(MdnsBrowser::new(service_type))?;
 
@@ -56,7 +43,6 @@ async fn main() -> zeroconf_tokio::Result<()> {
 
     while let Some(Ok(discovery)) = browser.next().await {
         info!("Discovered service: {:?}", discovery);
-        service.shutdown().await.unwrap();
         browser.shutdown().await.unwrap();
     }
 
